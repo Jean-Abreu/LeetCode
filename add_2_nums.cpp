@@ -58,7 +58,13 @@ void printList(ListNode* head) {
 }
 
 int main(){
-    
+    ListNode* l1 = createList({2, 4, 3});
+    ListNode* l2 = createList({5, 6, 4});
+
+    Solution sol;
+    ListNode* result = sol.addTwoNumbers(l1, l2);
+
+    printList(result);
 
     return 0;
 }
