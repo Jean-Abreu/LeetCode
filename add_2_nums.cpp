@@ -32,10 +32,33 @@ class Solution {
                 l1 = l1 ? l1->next : nullptr;
                 l2 = l2 ? l2->next : nullptr;
             }
+            return dummy->next;
         }
 };
 
+//Utility function to create a linked list from a vector
+ListNode* createList(const std::vector<int>& vals){
+    ListNode* dummy = new ListNode();
+    ListNode* current = dummy;
+    for(int val : vals) {
+        current->next = new ListNode(val);
+        current = current->next;
+    }
+    return dummy->next;
+}
+
+//Utility function to print a linked list
+void printList(ListNode* head) {
+    while (head){
+        std::cout << head->val;
+        if(head->next) std::cout << "->";
+        head = head->next;
+    }
+    std::cout << std::endl;
+}
+
 int main(){
+    
 
     return 0;
 }
