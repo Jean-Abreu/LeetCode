@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 //Problem: Given an array and a target value, find two values in the array that equal to target.
 //Return should be of the indices of the two elements summed to equal the target.
 
@@ -12,13 +13,27 @@
 //This will allow us to solve this problem with a Big O time complexity of O(n)
 
 //Brute force
-std::vector<int> twoSumBF(std::vector<int>& arr, int target){
-    for(int i = 0; i < arr.size(); i++){
-        for(int j = i + 1; j < arr.size(); j++){
-            if( arr[i] + arr[j] == target){
-                return {i, j};
-            }
+// std::vector<int> twoSumBF(std::vector<int>& arr, int target){
+//     for(int i = 0; i < arr.size(); i++){
+//         for(int j = i + 1; j < arr.size(); j++){
+//             if( arr[i] + arr[j] == target){
+//                 return {i, j};
+//             }
+//         }
+//     }
+//     return {};
+// }
+
+//HashMap 
+std::vector<int> twoSumHM(std::vector<int>& nums, int target){
+    std::unordered_map<int, int> m; //Creating a map with (value, index)
+    for(int i = 0; i < nums.size(); i++){
+        int x = nums[i];
+        int y = target - x;
+        if(m.count(y)){
+            return{m[y], i};
         }
+        m[x] = i;
     }
     return {};
 }
@@ -28,7 +43,8 @@ int main(){
     std::vector<int> arr = {1, 2, 3, 4, 5};
     int target = 9;
 
-    std::vector<int> result = twoSumBF(arr, target);
+    //std::vector<int> result = twoSumBF(arr, target);
+    std::vector<int> result = twoSumHM(arr, target);
 
     if(!result.empty()){
         std::cout << result[0] << ", " << result[1];
