@@ -9,9 +9,30 @@
 //This will need to be tested and confirmed with said future tests.
 //But as for the solution, I created a third linked list and store the data as I add, this allows for a single swoop of performance.
 //I would say that the time complexity of my solution is O((m or n), depending on which linked list the most nodes. 
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
+};
+
 
 class Solution {
-
+    public:
+        ListNode* addTwoNumbers(ListNode* l1, ListNode* l2){
+            ListNode* dummy = new ListNode();
+            int carry = 0;
+            ListNode* cur = dummy;
+            while(l1 || l2 || carry){
+                int s = (l1 ? l1->val : 0) + (l2 ? l2->val : 0) + carry;
+                carry = s / 10;
+                cur->next = new ListNode(s % 10);
+                cur = cur->next;
+                l1 = l1 ? l1->next : nullptr;
+                l2 = l2 ? l2->next : nullptr;
+            }
+        }
 };
 
 int main(){
