@@ -11,4 +11,3 @@ The goal of this repository is to:
 - Document progress for technical interviews and personal growth
 - Build a searchable reference of well-documented solutions
 
-## 🗂️ Structure
